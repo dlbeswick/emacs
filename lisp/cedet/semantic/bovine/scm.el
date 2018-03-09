@@ -23,6 +23,8 @@
 ;;
 ;; Use the Semantic Bovinator for Scheme (guile)
 
+;; Also see the grammar file located at admin/grammars/scheme.by
+
 (require 'semantic)
 (require 'semantic/bovine)
 (require 'semantic/bovine/scm-by)
@@ -106,6 +108,25 @@ syntax as specified by the syntax table."
         imenu-create-index-function 'semantic-create-imenu-index
         )
   (setq semantic-lex-analyzer #'semantic-scheme-lexer)
+  (setq semantic-lex-syntax-modifications
+	'((?/ "w")
+	  (?@ "_")
+	  ;; Guile: angle brackets are valid characters for symbols.
+	  (?< "_")
+	  (?> "_")
+	  ;; This character is used in keywords (i.e. #:function-arg).
+	  (?: ".")
+	  ;; Guile: Support correct skipping of block comments.
+	  (?# ". 14")
+	  (?! ". 2b3")
+	  )
+        )
+
+  ;; Guile: `scheme-mode' deliberately ignores block comments because it was seen
+  ;; to be difficult to implement correctly. However, ignoring them here can
+  ;; result in lexer failures. Block comments will not be noticed by the lexer
+  ;; unless this is set.
+  (setq semantic-lex-comment-regex "#!\\|;")
   )
 
 (provide 'semantic/bovine/scm)

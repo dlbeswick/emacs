@@ -293,7 +293,7 @@ on different types of return values."
     (define-key km "d" 'semantic-debug-down)
     (define-key km "f" 'semantic-debug-fail-match)
     (define-key km "h" 'semantic-debug-print-state)
-    (define-key km "s" 'semantic-debug-jump-to-source)
+    (define-key km "j" 'semantic-debug-jump-to-source)
     (define-key km "p" 'semantic-debug-jump-to-parser)
     (define-key km "q" 'semantic-debug-quit)
     (define-key km "a" 'semantic-debug-abort)
@@ -303,7 +303,7 @@ on different types of return values."
     (define-key km "e" 'eval-expression)
 
     km)
-  "Keymap used when in semantic-debug-node.")
+  "Keymap used when in semantic-debug-mode.")
 
 (defun semantic-debug-mode (onoff)
   "Turn `semantic-debug-mode' on and off.

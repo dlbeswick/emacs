@@ -17,6 +17,8 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with GNU Emacs.  If not, see <https://www.gnu.org/licenses/>.
 
+;; Also see this file's complement at lisp/cedet/semantic/bovine/scm.el
+
 %package semantic-scm-by
 %provide semantic/bovine/scm-by
 
@@ -34,12 +36,15 @@
 
 %token <open-paren> OPENPAREN "("
 %token <close-paren> CLOSEPAREN ")"
+%token <punctuation> QUOTE "'"
+%token <symbol> OPENBRACKET "<"
 
 %%
 
 scheme : semantic-list
 	 ( ,(let ((expand (EXPAND $1 scheme-list)))
 	      (cond
+	       ((null expand) %empty)
 	       ((semantic-tag-of-class-p expand 'module)
 		(TYPE-TAG (semantic-tag-name expand)
 		     "module"

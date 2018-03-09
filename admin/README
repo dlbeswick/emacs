@@ -9,6 +9,9 @@ and maintaining Emacs.  These files are not part of Emacs releases
 because they are not deemed generally useful, and you have to know
 what you do when using them.
 
+Note that some of files are used to generate output that is included in
+the Emacs release, such as the files in the "grammars" folder.
+
 
 * Instructions and scripts used to prepare an Emacs release.
 
